@@ -1,0 +1,34 @@
+{% extends 'SellerPage.html' %}
+{% block body %}
+<form method="POST" >
+    {% csrf_token %}
+    <table class="customers">
+        <tr>
+                <th>Booking ID</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Booked On</th>
+                <th>Customer</th> 
+                <th>Mobile</th>  
+                <th></th>
+                <th></th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.7}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.6}}</td>
+            <td>{{d.10}}</td>
+            <td>{{d.13}}</td>
+            <td>{{d.17}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    </form>
+    {% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+    {% endblock %}

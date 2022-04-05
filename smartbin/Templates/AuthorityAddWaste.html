@@ -1,0 +1,80 @@
+{% extends 'AuthorityPage.html' %}
+{% block body %}
+<form method="POST">
+{% csrf_token %}				
+    <table align="center">
+        <tr>
+            <td>
+        <label>Type Name</label></td>
+        <td>
+            <select name="type" class="textbox" style="color: deeppink;" id="Mname">
+                <option>---Select type---</option>
+                       
+                    <option value="plastic">Plastic</option>
+                    <option value="Food">Food</option>
+                    <option value="Cloth">Cloth</option>
+                       
+                </select>
+         
+    </td>
+    
+
+    <tr>
+        <td>
+    <label>QTY</label></td>
+    <td>
+    <input type="text" name="QTY" class="textbox">
+</td>
+</tr>
+<tr>
+    <td>
+<label>Location</label></td>
+<td>
+<input type="text" name="location" class="textbox">
+</td>
+</tr>
+    
+<tr>
+    <td>
+<label>Date</label></td>
+<td>
+<input type="date" name="date" class="textbox">
+</td>
+</tr>
+
+<tr>
+    <td>
+<input type="submit" value="ADD" name="ADD" class="but"/>
+</td>
+</tr>
+</table>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<br/>
+<br/>
+<table class="customers">
+    <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>QTY</th>
+            <th>Location</th>
+            <th>DATE</th>
+            <th></th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.1}}</td>
+        <td>{{d.2}}</td>
+        <td>{{d.3}}</td>
+        <td>{{d.4}}</td>
+        <td><a href="/AutorityAddWaste/?id={{d.0}}">Remove</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>  	
+</form>
+{% endblock %}

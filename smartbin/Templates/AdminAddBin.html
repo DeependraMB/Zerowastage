@@ -1,0 +1,53 @@
+{% extends 'AdminPage.html' %}
+{% block body %}
+<form method="POST">
+{% csrf_token %}				
+    <table align="center">
+        <tr>
+            <td>
+        <label>Bin Type</label></td>
+        <td>
+        <input type="text" name="type" class="textbox">
+    </td>
+    </tr>
+    <tr>
+        <td>
+    <label>Bin Size</label></td>
+    <td>
+    <input type="text" name="size" class="textbox">
+</td>
+</tr>
+    
+
+<tr>
+    <td>
+<input type="submit" value="ADD" name="ADD" class="but"/>
+</td>
+</tr>
+</table>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<br/>
+<br/>
+<table class="customers">
+    <tr>
+            <th>ID</th>
+            <th>TYPE</th>
+            <th>SIZE</th>
+            <th></th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.1}}</td>
+        <td>{{d.2}}</td>
+        <td><a href="/AdminAddBin/?id={{d.0}}">Remove</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>  	
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'AdminPage.html' %}
+{% block body %}
+<form method="POST">
+{% csrf_token %}				
+    <table align="center">
+        <tr>
+            <td>
+        <label>Event Name</label></td>
+        <td>
+        <input type="text" name="cat_name" class="textbox">
+    </td>
+    </tr>
+    
+    
+
+<tr>
+    <td>
+<input type="submit" value="ADD" name="ADD" class="but"/>
+</td>
+</tr>
+</table>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<br/>
+<br/>
+<table class="customers">
+    <tr>
+            <th>ID</th>
+            <th>Events</th>
+            
+            <th></th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.1}}</td>
+       
+        <td><a href="/AdminAddEvents/?id={{d.0}}">Remove</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>  	
+</form>
+{% endblock %}

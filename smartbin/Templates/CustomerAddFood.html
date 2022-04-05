@@ -1,0 +1,78 @@
+{% extends 'CustomerPage.html' %}
+{% block body %}
+<form method="POST">
+{% csrf_token %}				
+    <table align="center">
+        <tr>
+            <td>
+        <label>Event Name</label></td>
+        <td>
+            <select name="ename" class="textbox" style="color: deeppink;" id="Mname">
+                <option>---Select Event---</option>
+                        {%for c in data1 %}
+                    <option value="{{c.0}}">{{c.1}}</option>
+                        {% endfor %}
+                </select>
+         
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+    <label>QTY</label></td>
+    <td>
+    <input type="text" name="place" class="textbox">
+</td>
+</tr>
+<tr>
+    <td>
+<label>Quality</label></td>
+<td>
+<input type="text" name="Address" class="textbox">
+</td>
+</tr>
+    
+<tr>
+    <td>
+<label>Date</label></td>
+<td>
+<input type="date" name="date" class="textbox">
+</td>
+</tr>
+
+<tr>
+    <td>
+<input type="submit" value="ADD" name="ADD" class="but"/>
+</td>
+</tr>
+</table>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<br/>
+<br/>
+<table class="customers">
+    <tr>
+            <th>ID</th>
+            <th>Events</th>
+            <th>QTY</th>
+            <th>QUALITY</th>
+            <th>DATE</th>
+            <th></th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.1}}</td>
+        <td>{{d.2}}</td>
+        <td>{{d.3}}</td>
+        <td>{{d.4}}</td>
+        <td><a href="/CustomerAddFood/?id={{d.0}}">Remove</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>  	
+</form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'AdminPage.html' %}
+{% block body %}
+<form method="POST">
+{% csrf_token %}				
+<table align="center">
+    <tr>
+        <td><label>Category</label></td>
+        <td><select name="cat_title" value=" " class="textbox" style="color: deeppink;">
+            <option>---Select Category---</option>
+                {%for c in data %}
+            <option value="{{c.0}}">{{c.1}}</option>
+                {% endfor %}
+        </select></td>
+    </tr>
+    <tr>
+        <td><label>Subcategory Name</label></td>
+        <td><input type="text" name="cat_name" class="textbox"></td>
+    </tr>
+    
+    <tr>
+        <td><input type="submit" value="ADD" name="ADD" class="but"/></td>
+    </tr>
+</table>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<br/>
+<br/>
+<table class="customers">
+    <tr>
+            <th>ID</th>
+            <th>Subcategory</th>
+            
+            <th></th>
+    </tr>
+    {% for d in sdata %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.2}}</td>
+       
+        <td><a href="/AdminAddSubCategory/?id={{d.0}}">Remove</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>  	
+</form>
+{% endblock %}

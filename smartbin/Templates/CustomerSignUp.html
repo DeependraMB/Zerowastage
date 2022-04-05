@@ -1,0 +1,60 @@
+{% extends 'Common Page.html' %}
+
+
+{% block body %}
+<div class="input-info">
+		
+										
+									</div>
+									<div class="form-body form-body-info">
+										<form data-toggle="validator"  method="post">
+                                        {% csrf_token %}
+											<div class="form-group valid-form">
+												<input type="text" class="form-control" id="inputName" name="name" placeholder="Name" required="">
+												<input type="text" class="form-control" id="inputName" name="adrs" placeholder="Address" required="">
+												<input type="text" class="form-control" id="inputName" name="pincode" placeholder="Pincode" required="">
+											</div>
+											<div class="form-group">
+												<div class="radio">
+													<label>
+													  <input type="radio" name="gender" value="Male" required="">
+													  Male
+													</label>
+												</div>
+												<div class="radio">
+													<label>
+													<input type="radio" name="gender" value="Female" required="">
+													Female
+													</label>
+												</div>
+											</div>
+											<input type="text" class="form-control" id="inputName" name="age" placeholder="Age" required="">
+											<input type="text" class="form-control" id="inputName" name="cntry" placeholder="District" required="">
+											<input type="text" class="form-control" id="inputName" name="state" placeholder="Location" required="">
+											<div class="form-group has-feedback">
+												<input type="email" class="form-control" name="email" placeholder="Email" data-error="That email address is invalid" required="">
+												<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+												<span class="help-block with-errors">Please enter a valid email address</span>
+											</div>
+											<input type="text" class="form-control" id="inputName" name="fon" placeholder="Mobile" required="">
+											
+											<div class="form-group">
+											  <input type="password" data-toggle="validator" data-minlength="6" class="form-control" id="inputPassword" name="pass" placeholder="Password" required="">
+											  <span class="help-block">Minimum of 6 characters</span>
+											</div>
+											
+											<div class="form-group">
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" id="terms" data-error="Before you wreck yourself" required="">
+														I have read and accept terms of use.
+													</label>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="form-group">
+												<button type="submit" name="submit" class="btn btn-primary disabled">Submit</button>
+											</div>
+										</form>
+										</div>
+										{% endblock %}

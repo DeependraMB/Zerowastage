@@ -1,0 +1,23 @@
+{% extends 'AdminPage.html' %}
+{% block body %}
+<form action="#" method="post" >
+{% csrf_token %}
+<table class="customers">
+    <tr>
+        <th>Product ID</th>
+        <th>Product</th>
+        <th>Quantity</th>  
+        <th>Amont</th>   
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.0}}</td>
+        <td>{{d.4}}</td>
+        <td>{{d.8}}</td>
+        <td>{{d.7}}</td>
+        <td><a href='/AdminUpdateProduct?id={{d.0}}&st=Accept'>Update</a></td>
+        <td><a href='/AdminUpdateProduct?id={{d.0}}'>Remove</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

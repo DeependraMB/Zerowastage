@@ -1,0 +1,69 @@
+{% extends 'AdminPage.html' %}
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %} 
+<table align="center">
+<tr>
+    <td><label>Product  Name</label></td>
+    <td><input type="text" name="product_title" class="textbox"></td>
+</tr>
+<tr>
+    <td><label>Bin Type</label></td>
+    <td><select name="type" class="textbox" id="type" style="color: deeppink;">
+            <option>---Select Type---</option>
+                {%for c in cat %}
+            <option value="{{c.0}}">{{c.1}}</option>
+                {% endfor %}
+        </select>
+   </td>
+</tr>
+<tr>
+    <td>Municipality Name</td>
+    <td><select name="Mname" class="textbox" style="color: deeppink;" id="Mname">
+        <option>---Select Municipality---</option>
+                {%for c in edata %}
+            <option value="{{c.0}}">{{c.1}}</option>
+                {% endfor %}
+        </select>
+    </td>
+</tr>
+
+<tr>
+    <td><label>Qty</label></td>
+    <td><input type="text" name="qty" pattern="[0-9]+" class="textbox"></td>
+</tr>
+
+<tr>
+    <td><input type="submit" value="Add" name="Add" class="but"/></td>
+</tr>
+</table>
+
+</form>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+<script src="../static/Login/js/jquery-2.2.3.min.js"></script>
+    <script>
+        $("#cat").change(function () {
+            var c=0
+            debugger;
+            var entity=new Array();
+            var cid = $("#cat").val();
+            var urls='/subcat/?dataid=' + cid ;
+            $.ajax({
+                url: urls,
+                success: function(data){
+                $('select[name=subcategory]').empty()
+                $.each(data, function(index, text){   
+                    debugger;                         
+                $('select[name=subcategory]').append(
+                $('<option></option>').val(text).html(text)
+                );                       
+                });                        
+                }                       
+                })
+                })
+        </script>
+{% endblock %}
